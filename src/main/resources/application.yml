@@ -1,0 +1,26 @@
+zuul:
+  ignored-services: '*'
+  routes:
+    application1:
+      path: /application1/**
+      serviceId: app1
+    application2:
+      path: /application2/**
+      serviceId: app2
+
+    eureka:
+      path: /dashboard/**
+      url: http://discovery:8761/
+  prefix: /application
+  sensitive-headers: Cookie,Set-Cookiels
+security:
+  basic:
+    enabled: false
+
+  hystrix:
+    command:
+      default:
+        execution:
+          isolation:
+            thread:
+              timeoutInMilliseconds: 60000
